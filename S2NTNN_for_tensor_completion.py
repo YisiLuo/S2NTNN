@@ -47,7 +47,7 @@ mat = scipy.io.loadmat(file_name)
 X_np = mat["Nhsi"]
 X = torch.from_numpy(X_np).type(dtype).cuda()
 
-n_4 = 2 * X_np.shape[2] 
+n_4 = 2 * X_np.shape[2] # The dimension of the transformed tensor, can be set as another value, e.g., 3/4/5 * X_np.shape[2]. If X_np.shape[2] is small, it is better to set a larger value of n_4
 
 model = SSNT(n_4, X_np.shape[2]).cuda() 
 s = sum([np.prod(list(p.size())) for p in model.parameters()]); 
